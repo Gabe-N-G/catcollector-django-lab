@@ -28,6 +28,7 @@ class FeedingListCreate(generics.ListCreateAPIView):
     serializer_class = FeedingSerializer
 
     def get_queryset(self):
+        # cat_id is read only in our .serializer. this is how we pass in the slug as a kwarg.
         # kwargs are like params
         cat_id = self.kwargs['cat_id']
         # all the feeding objects where cat_id = the cat_id from kwargs/params

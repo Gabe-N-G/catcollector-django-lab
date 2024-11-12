@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 
 # Create your models here.
 # imagine models/schema
@@ -20,6 +21,10 @@ class Cat(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def fed_for_today(self):
+        # when called, if the selfeeding aof the today date, count it and see if it's >= len of meals (3 meals a day?)
+        return self.feeding_set.filter(date=date.today()).count() >= len(MEALS)
     
 class Feeding(models.Model):
     date = models.DateField('Feeding Date')
